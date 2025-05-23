@@ -246,9 +246,14 @@ def draw_func():
     ax.clear()
     draw_dots()
     fs=[]
-    fs.append(["Усовершенствованный метод Эйлера", extra_Eiler(cur_func, h, x0, y0, xn, accuracy, cur_real_func), "red"])
-    fs.append(["Метод Рунге-Кутта 4-го порядка", Runge(cur_func, h, x0, y0, xn, accuracy, cur_real_func), "yellow"])
-    fs.append(["Метод Милна", Monnesy(cur_func, h, x0, y0, xn, accuracy, cur_real_func), "green"])
+    try:
+        fs.append(["Усовершенствованный метод Эйлера", extra_Eiler(cur_func, h, x0, y0, xn, accuracy, cur_real_func), "red"])
+        fs.append(["Метод Рунге-Кутта 4-го порядка", Runge(cur_func, h, x0, y0, xn, accuracy, cur_real_func), "yellow"])
+        fs.append(["Метод Милна", Monnesy(cur_func, h, x0, y0, xn, accuracy, cur_real_func), "green"])
+    except Exception as e:
+        messagebox.showerror("Ошибка!",
+                             f"Сообщение об ошибке: Вычислительная ошибка: {e}")
+        return 0
     for i in range(len(fs)):
         data, h = fs[i][1]
         message = ""
